@@ -1,5 +1,10 @@
 package edu.osu.cse5234.controller;
 
-public class PurchaseController {
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@Controller
+@RequestMapping("/purchase")
+public class PurchaseController {
+	
 }
