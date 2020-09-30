@@ -1,4 +1,4 @@
-package osu.edu.cse5234.model;
+package edu.osu.cse5234.model;
 
 public class ShippingInfo {
 
