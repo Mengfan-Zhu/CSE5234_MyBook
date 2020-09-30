@@ -29,4 +29,37 @@ public class PurchaseController {
 		request.setAttribute("payment", new PaymentInfo());	
 		return "PaymentEntryForm";
 	}
+	
+	@RequestMapping(path = "/submitPayment", method = RequestMethod.POST)
+	public String submitPayment(@ModelAttribute("payment") PaymentInfo paymentInfo, HttpServletRequest request) {
+		request.getSession().setAttribute("payment", paymentInfo);
+		return "redirect:/purchase/shippingEntry";
+	}
+	
+	@RequestMapping(path = "/shippingEntry", method = RequestMethod.GET)
+	public String viewShippingEntryForm(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("shipping", new ShippingInfo());	
+		return "ShippingEntryForm";
+	}
+	
+	@RequestMapping(path = "/submitShipping", method = RequestMethod.POST)
+	public String submitShipping(@ModelAttribute("shipping") ShippingInfo shippingInfo, HttpServletRequest request) {
+		request.getSession().setAttribute("shipping", shippingInfo);
+		return "redirect:/purchase/shippingEntry";
+	}
+	
+	@RequestMapping(path = "/viewOrder", method = RequestMethod.GET)
+	public String viewOrder(HttpServletRequest request, HttpServletResponse response) {	
+		return "ViewOrder";
+	}
+	
+	@RequestMapping(path = "/confirmOrder", method = RequestMethod.POST)
+	public String confirmOrder(@ModelAttribute("payment") PaymentInfo paymentInfo, HttpServletRequest request) {
+		return "redirect:/purchase/viewConfirmation";
+	}
+	
+	@RequestMapping(path = "/viewConfirmation", method = RequestMethod.GET)
+	public String viewConfirmation(HttpServletRequest request, HttpServletResponse response) {
+		return "Confirmation";
+	}
 }
