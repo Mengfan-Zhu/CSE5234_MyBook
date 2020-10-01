@@ -1,5 +1,8 @@
 package edu.osu.cse5234.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import edu.osu.cse5234.model.*;
@@ -15,6 +18,18 @@ public class PurchaseController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String viewOrderEntryForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// ... instantiate and set order object with items to display
+		Order order = new Order();
+		List<Item> items = new ArrayList<>();
+		String[] names = {"book1", "book2", "book3", "book4", "book5"};
+		String[] prices = {"10.75", "35.70", "12.35", "25.43", "6.58"};
+		for(int i=0; i<5; i++) {
+			Item item = new Item();
+			item.setName(names[i]);
+			item.setPrice(prices[i]);
+			items.add(item);
+			order.setItems(items);
+		}
+		request.setAttribute("order", order);	
 		return "OrderEntryForm";
 	}
 
@@ -45,7 +60,7 @@ public class PurchaseController {
 	@RequestMapping(path = "/submitShipping", method = RequestMethod.POST)
 	public String submitShipping(@ModelAttribute("shipping") ShippingInfo shippingInfo, HttpServletRequest request) {
 		request.getSession().setAttribute("shipping", shippingInfo);
-		return "redirect:/purchase/shippingEntry";
+		return "redirect:/purchase/viewOrder";
 	}
 	
 	@RequestMapping(path = "/viewOrder", method = RequestMethod.GET)
