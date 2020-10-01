@@ -1,39 +1,39 @@
 package edu.osu.cse5234.model;
 
 public class PaymentInfo {
-	private String CreditCardNumber;
-	private String ExpirationDate;
-	private String CvvCode;
-	private String CardHolderName;
+	private String creditCardNumber;
+	private String expirationDate;
+	private String cvvCode;
+	private String cardHolderName;
 	
 	public String getCreditCardNumber() {
-		return CreditCardNumber;
+		return creditCardNumber;
 	}
-	public void setCreditCardNumber(String CreditCardNumber) {
-		this.CreditCardNumber = CreditCardNumber;
+	public void setCreditCardNumber(String creditCardNumber) {
+		this.creditCardNumber = creditCardNumber;
 	}
 	
 	public String GetExpirationDate() {
-		return ExpirationDate;
+		return expirationDate;
 	}
 	
-	public void setExpirationDate(String ExpirationDate) {
-		this.ExpirationDate = ExpirationDate;
+	public void setExpirationDate(String expirationDate) {
+		this.expirationDate = expirationDate;
 	}
 	
 	public String getCvvCode() {
-		return CvvCode;
+		return cvvCode;
 	}
 	
-	public void setCvvCode(String CvvCode) {
-		this.CvvCode = CvvCode;
+	public void setCvvCode(String cvvCode) {
+		this.cvvCode = cvvCode;
 	}
 
 	public String getCardHolderName() {
-		return CardHolderName;
+		return cardHolderName;
 	}
 	
-	public void setCardHolderName(String CardHolderName) {
-		this.CardHolderName = CardHolderName;
+	public void setCardHolderName(String cardHolderName) {
+		this.cardHolderName = cardHolderName;
 	}
 }

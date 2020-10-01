@@ -1,58 +1,58 @@
 package edu.osu.cse5234.model;
 
 public class ShippingInfo {
-	private String Name;
-	private String AddressLine1;
-	private String AddressLine2;
-	private String City;
-	private String State;
-	private String Zip;
+	private String name;
+	private String addressLine1;
+	private String addressLine2;
+	private String city;
+	private String state;
+	private String zip;
 	
 	public String getName() {
-		return Name;
+		return name;
 	}
 	
-	public void setName(String Name) {
-		this.Name = Name;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public String getAddressLine1() {
-		return AddressLine1;
+		return addressLine1;
 	}
 	
-	public void setAddressLine1(String AddressLine1) {
-		this.AddressLine1 = AddressLine1;
+	public void setAddressLine1(String addressLine1) {
+		this.addressLine1 = addressLine1;
 	}
 	
 	public String getAddressLine2() {
-		return AddressLine2;
+		return addressLine2;
 	}
 	
-	public void setAddressLine2(String AddressLine2) {
-		this.AddressLine2 = AddressLine2;
+	public void setAddressLine2(String addressLine2) {
+		this.addressLine2 = addressLine2;
 	}
 	
 	public String getCity() {
-		return City;
+		return city;
 	}
 	
-	public void setCity(String City) {
-		this.City = City;
+	public void setCity(String city) {
+		this.city = city;
 	}
 	
 	public String getState() {
-		return State;
+		return state;
 	}
 	
-	public void setState(String State) {
-		this.State = State;
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 	public String getZip() {
-		return Zip;
+		return zip;
 	}
 	
-	public void setZip(String Zip) {
-		this.Zip = Zip;
+	public void setZip(String zip) {
+		this.zip = zip;
 	}
 }
