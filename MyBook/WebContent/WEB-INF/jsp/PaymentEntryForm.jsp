@@ -6,9 +6,6 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-
 <title>Payment Entry Form</title>
 <style>
 td{
@@ -19,30 +16,29 @@ table{
  	border-collapse: collapse;
 }
 .hidden{
- border: 0;
+ 	border: 0;
 }
 </style>
 </head>
 <body>
-<form:form modelAttribute="payment" method="post" action="purchase/submitPayment">
-
+<form:form modelAttribute="payment" method="post" action="submitPayment">
     <table>
     <thead>
     	<tr>
     		<td>Credit Card Number: </td>
-    		<td><form:input path="payment.creditCardNumber" /></td>
+    		<td><form:input path="creditCardNumber" /></td>
     	</tr>
     	<tr>
     		<td>Expiration Date: </td>
-    		<td><form:input path="payment.expirationDate" /></td>
+    		<td><form:input path="expirationDate" /></td>
     	</tr>
     	<tr>
     		<td>CVV code: </td>
-    		<td><form:input path="payment.cvvCode" /></td>
+    		<td><form:input path="cvvCode" /></td>
     	</tr>
     	<tr>
     		<td>Card Holder Name: </td>
-    		<td><form:input path="payment.expirationDate" /></td>
+    		<td><form:input path="cardHolderName" /></td>
     	</tr>
     </thead>
     </table>

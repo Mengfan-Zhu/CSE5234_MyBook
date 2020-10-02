@@ -13,7 +13,7 @@ public class PaymentInfo {
 		this.creditCardNumber = creditCardNumber;
 	}
 	
-	public String GetExpirationDate() {
+	public String getExpirationDate() {
 		return expirationDate;
 	}
 	
