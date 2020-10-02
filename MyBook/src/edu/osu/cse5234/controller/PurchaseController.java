@@ -20,15 +20,15 @@ public class PurchaseController {
 		// ... instantiate and set order object with items to display
 		Order order = new Order();
 		List<Item> items = new ArrayList<>();
-		String[] names = {"book1", "book2", "book3", "book4", "book5"};
-		String[] prices = {"10.75", "35.70", "12.35", "25.43", "6.58"};
+		String[] names = {"Machine Learning Engineering", "Introduction to Algorithms", "Python for Data Analysis", "C Programming Language", "Computer Networking: A Top-Down Approach"};
+		String[] prices = {"39.95", "68.47", "39.95", "63.65", "164.65"};
 		for(int i=0; i<5; i++) {
 			Item item = new Item();
 			item.setName(names[i]);
 			item.setPrice(prices[i]);
-			items.add(item);
-			order.setItems(items);
+			items.add(item);			
 		}
+		order.setItems(items);
 		request.setAttribute("order", order);	
 		return "OrderEntryForm";
 	}
