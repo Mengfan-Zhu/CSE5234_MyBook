@@ -23,7 +23,6 @@ table{
 <body>
 <form:form modelAttribute="payment" method="post" action="submitPayment">
     <table>
-    <thead>
     	<tr>
     		<td>Credit Card Number: </td>
     		<td><form:input path="creditCardNumber" /></td>
@@ -40,7 +39,6 @@ table{
     		<td>Card Holder Name: </td>
     		<td><form:input path="cardHolderName" /></td>
     	</tr>
-    </thead>
     </table>
     <tr>
 		<td colspan="2"  class = "hidden"><input type="submit" value="Pay"></td>
