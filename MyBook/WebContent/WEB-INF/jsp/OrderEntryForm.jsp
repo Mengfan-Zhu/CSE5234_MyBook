@@ -12,12 +12,16 @@
 td{
   border: 1px solid black;
   border-collapse: collapse;
+  padding: 0 10px;
 }
 table{
  	border-collapse: collapse;
 }
 .hidden{
  border: 0;
+}
+input{
+	margin: 5px 0;
 }
 </style>
 </head>

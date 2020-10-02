@@ -12,6 +12,7 @@
 td{
   border: 1px solid black;
   border-collapse: collapse;
+  padding: 0 10px;
 }
 table{
  	border-collapse: collapse;
@@ -19,21 +20,25 @@ table{
 .hidden{
  	border: 0;
 }
+input{
+	margin: 5px 0;
+}
 </style>
 </head>
 <body>
-	Order List
-	<br>
+	<h3>Order List</h3>
 	<table>
 			<c:forEach items="${sessionScope.order.items}" var="item" varStatus="loop">
+				<c:if test="${item.quantity.length()>0}">
 				<tr>
 				<td><c:out value="${item.name}"></c:out></td>
 				<td><c:out value="${item.price}"></c:out></td>
 				<td><c:out value="${item.quantity}"></c:out></td>
 				</tr>
+				</c:if>				
 			</c:forEach>
 	</table>
-	<br/>Payment Information<br/>
+	<h3>Payment Information</h3>
 	<table>
 		<tr>
     		<td>Credit Card Number: </td>
@@ -52,7 +57,7 @@ table{
     		<td><c:out value="${sessionScope.payment.cardHolderName}" /></td>
     	</tr>
 	</table>
-	<br/>Shipping Details<br/>
+	<h3>Shipping Details</h3>
 	<table>
 			<tr>
 				<td><c:out value="Name: "></c:out></td>
@@ -78,6 +83,9 @@ table{
 				<td><c:out value="Zip: "></c:out></td>
 			 	<td><c:out value = "${sessionScope.shipping.zip}"></c:out></td>
 			</tr>
-	</table>	
+	</table>
+	<form:form method="post" action="confirmOrder">	
+		<input type="submit" value="Confirm">
+	</form:form>
 </body>
 </html>

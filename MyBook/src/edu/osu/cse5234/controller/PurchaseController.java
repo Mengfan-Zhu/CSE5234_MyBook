@@ -69,12 +69,13 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping(path = "/confirmOrder", method = RequestMethod.POST)
-	public String confirmOrder(@ModelAttribute("payment") PaymentInfo paymentInfo, HttpServletRequest request) {
+	public String confirmOrder(PaymentInfo paymentInfo, HttpServletRequest request) {
 		return "redirect:/purchase/viewConfirmation";
 	}
 	
 	@RequestMapping(path = "/viewConfirmation", method = RequestMethod.GET)
 	public String viewConfirmation(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("confirmNum", "9896886901");
 		return "Confirmation";
 	}
 }
