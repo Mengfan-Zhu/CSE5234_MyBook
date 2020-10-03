@@ -53,7 +53,7 @@ input{
     	</tr>
     </table>
     <tr>
-		<td colspan="2"  class = "hidden"><input type="submit" value="Pay"></td>
+		<td colspan="2"  class = "hidden"><input type="submit" value="Confirm"></td>
 	 </tr>
 </form:form>
 </body>
