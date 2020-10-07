@@ -11,4 +11,14 @@ public class HomeController {
 	public String printHome() throws Exception {
 		return "home";
 	}
+	
+	@RequestMapping(path="/AboutUs", method = RequestMethod.GET)
+	public String aboutUs() throws Exception {
+		return "AboutUs";
+	}
+	
+	@RequestMapping(path="/ContactUs", method = RequestMethod.GET)
+	public String contactUs() throws Exception {
+		return "ContactUs";
+	}
 }
