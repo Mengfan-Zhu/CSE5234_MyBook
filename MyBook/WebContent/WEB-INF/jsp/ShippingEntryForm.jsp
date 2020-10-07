@@ -1,30 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Shipping Entry Form</title>
-<style>
-td{
-  border: 1px solid black;
-  border-collapse: collapse;
-  padding: 0 10px;
-}
-table{
- 	border-collapse: collapse;
-}
-.hidden{
- 	border: 0;
-}
-input{
-	margin: 5px 0;
-}
-</style>
-</head>
-<body>
+<jsp:include page="header.jsp"/>
 <form:form modelAttribute="shipping" method="post" action="submitShipping">
     <table>
     	<tr>
@@ -56,5 +32,4 @@ input{
 		<td colspan="2"  class = "hidden"><input type="submit" value="Confirm"></td>
 	 </tr>
 </form:form>
-</body>
-</html>
+<jsp:include page="footer.jsp"/>

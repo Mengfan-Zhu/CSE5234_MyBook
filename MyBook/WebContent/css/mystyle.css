@@ -13,7 +13,7 @@ body {
 	height: 100%;
 }
 
-.header {
+header {
 	padding: 10px;
 	width: 100%;
 	text-align: center;
@@ -21,11 +21,11 @@ body {
 	color: #424242;
 }
 
-.body {
+body {
 	margin: 10px;
 }
 
-.footer {
+footer {
 	clear: both;
 	position: inherit;
 	bottom: 0;
@@ -37,6 +37,27 @@ body {
 	color:#fff;
 }
 
+li{
+	padding: 15px;
+	background-color: #F2F2F2;
+}
+
+.home{
+	padding: 15px;
+	margin: 10px;
+	background-color: #d9fbff;
+}
+td{
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 0 10px;
+}
+table{
+ 	border-collapse: collapse;
+}
+.hidden{
+ border: 0;
+}
 
 .prodheading {
 	width: 100%;

@@ -4,18 +4,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel = "stylesheet" type = "text/css" href="${pageContext.request.contextPath}/css/mystyle.css" />
+<meta charset="ISO-8859-1">
+<title>My Book</title>
+<link rel = "stylesheet" type = "text/css" href="css/mystyle.css" >
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
+
 <body>
-	<ul class="menu">
-		<li><a href="/MyBook">Home</a></li>
-		<li><a href="/MyBook/purchase">Purchase</a></li>
-		<li><a href="/MyBook/AboutUs">About Us</a></li>
-		<li><a href="/MyBook/ContactUs">Contact Us</a></li>
-	</ul>
+<header>
 	<div class="content">
-		<h4>CSE Book Shop</h4>
+		<h4>My Book - CSE Book Shop</h4>
 		<h5>One stop shop for computer science books.</h5>
 	</div>
-</body>
-</html>
+</header>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+      <ul class="navbar-nav">
+		<li><a href="/MyBook/" class="nav-item">Home</a></li>
+		<li><a href="/MyBook/purchase" class="nav-item">Purchase</a></li>
+		<li><a href="/MyBook/AboutUs" class="nav-item">About Us</a></li>
+		<li><a href="/MyBook/ContactUs" class="nav-item">Contact Us</a></li>
+	</ul>
+   </div>
+</nav>
