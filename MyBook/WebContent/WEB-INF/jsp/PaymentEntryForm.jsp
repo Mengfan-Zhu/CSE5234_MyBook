@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="header.jsp"/>
 <form:form modelAttribute="payment" method="post" action="submitPayment">
-    <table>
+    <table class = "inputs">
     	<tr>
     		<td>Credit Card Number: </td>
     		<td><form:input path="creditCardNumber" /></td>
@@ -21,8 +21,6 @@
     		<td><form:input path="cardHolderName" /></td>
     	</tr>
     </table>
-    <tr>
-		<td colspan="2"  class = "hidden"><input type="submit" value="Pay"></td>
-	 </tr>
+<input type="submit" value="Pay">
 </form:form>
 <jsp:include page="footer.jsp"/>

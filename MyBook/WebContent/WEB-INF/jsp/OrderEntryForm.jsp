@@ -2,14 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="header.jsp"/>
 <form:form modelAttribute="order" method="post" action="purchase/submitItems">
-    <table>
-    <thead>
-    	<tr>
-    		<td>Name</td>
-    		<td>Price</td>
-    		<td>Quantity</td>
-    	</tr>
-    </thead>
+    <table class = "inputs">
+   	<tr>
+   		<th>Name</th>
+   		<th>Price</th>
+   		<th>Quantity</th>
+   	</tr>
 	<c:forEach items="${order.items}" var="item" varStatus="loop">
 		<tr>
 			<td><c:out value="${item.name}"></c:out></td>
@@ -19,9 +17,7 @@
 			<td class = "hidden"><form:hidden path="items[${loop.index}].price" value="${item.price}"/></td>
 		</tr>
 	</c:forEach>
-	  <tr>
-		<td colspan="2"  class = "hidden"><input type="submit" value="Purchase"></td>
-	  </tr>
     </table>
+	<input type="submit" value="Purchase">
 </form:form>
 <jsp:include page="footer.jsp"/>
