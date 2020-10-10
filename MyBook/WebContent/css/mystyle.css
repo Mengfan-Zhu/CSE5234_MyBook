@@ -4,7 +4,6 @@ html {
 	color: #2E2E2E;
 	font-family: Arial, Helvetica, sans-serif;
 	background-color: #F2F2F2;
-	max-width: 980px;
 }
 
 body {
@@ -23,6 +22,7 @@ header {
 
 body {
 	margin: 10px;
+	width: 100%;
 }
 
 footer {
