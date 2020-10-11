@@ -8,6 +8,7 @@
 <title>My Book</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
 <style><%@include file="/css/mystyle.css"%></style>
+
 </head>
 
 <body>
@@ -19,7 +20,7 @@
 </header>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="/MyBook/">MyBook</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

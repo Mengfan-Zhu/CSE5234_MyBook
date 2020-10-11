@@ -4,6 +4,11 @@
 <jsp:include page="header.jsp"/>
 	<h3>Order List</h3>
 	<table>
+   	<tr>
+   		<th>Name</th>
+   		<th>Price</th>
+   		<th>Quantity</th>
+   	</tr>
 			<c:forEach items="${sessionScope.order.items}" var="item" varStatus="loop">
 				<c:if test="${item.quantity.length()>0}">
 				<tr>
