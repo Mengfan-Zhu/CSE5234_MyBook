@@ -1,7 +1,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="header.jsp"/>
-
+<c:if test="${resubmit == true}">
+	<div class = "alert alert-danger message" role="alert">
+		<p>Please resubmit item quantities!</p>
+	</div>
+</c:if>
 <form:form modelAttribute="order" method="post" action="purchase/submitItems" onsubmit="return validateForm()">
     <table class = "inputs">
    	<tr>

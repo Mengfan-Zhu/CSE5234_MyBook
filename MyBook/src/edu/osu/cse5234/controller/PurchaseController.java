@@ -1,11 +1,13 @@
 package edu.osu.cse5234.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import edu.osu.cse5234.business.view.Inventory;
+import edu.osu.cse5234.business.view.InventoryService;
+import edu.osu.cse5234.bussiness.OrderProcessingServiceBean;
 import edu.osu.cse5234.model.*;
+import edu.osu.cse5234.util.ServiceLocator;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,25 +20,29 @@ public class PurchaseController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String viewOrderEntryForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// ... instantiate and set order object with items to display
-		Order order = new Order();
-		List<Item> items = new ArrayList<>();
-		String[] names = {"Machine Learning Engineering", "Introduction to Algorithms", "Python for Data Analysis", "C Programming Language", "Computer Networking: A Top-Down Approach"};
-		String[] prices = {"39.95", "68.47", "39.95", "63.65", "164.65"};
-		for(int i=0; i<5; i++) {
-			Item item = new Item();
-			item.setName(names[i]);
-			item.setPrice(prices[i]);
-			items.add(item);			
+		InventoryService inventoryService = ServiceLocator.getInventoryService();
+		Inventory inventory = inventoryService.getAvailableInventory();
+		if(request.getSession().getAttribute("resubmit") == null) {
+			request.getSession().setAttribute("resubmit", false);
 		}
-		order.setItems(items);
-		request.setAttribute("order", order);	
+		Order order = new Order();
+		order.setItems(inventory.getItems());
+		request.setAttribute("order", order);
 		return "OrderEntryForm";
 	}
 
 	@RequestMapping(path = "/submitItems", method = RequestMethod.POST)
 	public String submitItems(@ModelAttribute("order") Order order, HttpServletRequest request) {
 		request.getSession().setAttribute("order", order);
-		return "redirect:/purchase/paymentEntry";
+		OrderProcessingServiceBean orderProcessingServiceBean = ServiceLocator.getOrderProcessingService();
+		boolean isValid = orderProcessingServiceBean.validateItemAvailability(order);
+		if(isValid) {
+			return "redirect:/purchase/paymentEntry";
+		}else {
+			request.getSession().setAttribute("resubmit", true);
+			return "redirect:/purchase";
+		}
+		
 	}
 	
 	@RequestMapping(path = "/paymentEntry", method = RequestMethod.GET)

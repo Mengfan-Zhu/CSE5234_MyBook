@@ -3,7 +3,9 @@ package edu.osu.cse5234.bussiness;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import edu.osu.cse5234.business.view.InventoryService;
 import edu.osu.cse5234.model.Order;
+import edu.osu.cse5234.util.ServiceLocator;
 
 /**
  * Session Bean implementation class OrderProcessingServiceBean
@@ -22,5 +24,9 @@ public class OrderProcessingServiceBean {
     public String processOrder(Order order) {
     	return "";
     }
-
+    
+    public boolean validateItemAvailability(Order order) {
+    	InventoryService inventoryService = ServiceLocator.getInventoryService();
+    	return inventoryService.validateQuantity(order.getItems());
+    }
 }
