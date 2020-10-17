@@ -1,9 +1,13 @@
 package edu.osu.cse5234.bussiness;
 
+import java.util.List;
+import java.util.UUID;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import edu.osu.cse5234.business.view.InventoryService;
+import edu.osu.cse5234.business.view.Item;
 import edu.osu.cse5234.model.Order;
 import edu.osu.cse5234.util.ServiceLocator;
 
@@ -22,7 +26,20 @@ public class OrderProcessingServiceBean {
     }
     
     public String processOrder(Order order) {
-    	return "";
+    	InventoryService inventoryService = ServiceLocator.getInventoryService();
+    	
+    	List<Item> items = order.getItems();
+    	if(inventoryService.validateQuantity(items)) {
+    		if(inventoryService.updateInventory(items)) {
+    			
+    		} else {
+    			return "Error";
+    		}
+    	} else {
+    		return "Error";
+    	}
+    	
+    	return UUID.randomUUID().toString();
     }
     
     public boolean validateItemAvailability(Order order) {
