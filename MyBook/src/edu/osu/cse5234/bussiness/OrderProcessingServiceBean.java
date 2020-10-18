@@ -27,12 +27,9 @@ public class OrderProcessingServiceBean {
     
     public String processOrder(Order order) {
     	InventoryService inventoryService = ServiceLocator.getInventoryService();
-    	
     	List<Item> items = order.getItems();
     	if(inventoryService.validateQuantity(items)) {
-    		if(inventoryService.updateInventory(items)) {
-    			
-    		} else {
+    		if(!inventoryService.updateInventory(items)) {
     			return "Error";
     		}
     	} else {
