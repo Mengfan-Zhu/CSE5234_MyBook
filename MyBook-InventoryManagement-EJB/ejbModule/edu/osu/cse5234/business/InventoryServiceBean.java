@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.*;
 
 /**
  * Session Bean implementation class InventoryServiceBean
@@ -21,18 +22,20 @@ public class InventoryServiceBean implements InventoryService {
     public InventoryServiceBean() {
         // TODO Auto-generated constructor stub
     }
-    @Override
+    String MY_QUERY = "Select i from Item i";
+    @PersistenceContext
+    EntityManager entityManager;
+
+    public EntityManager getEntityManager() {
+		return entityManager;
+	}
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+	@Override
     public Inventory getAvailableInventory() {
 		Inventory inventory = new Inventory();
-		List<Item> items = new ArrayList<>();
-		String[] names = {"Machine Learning Engineering", "Introduction to Algorithms", "Python for Data Analysis", "C Programming Language", "Computer Networking: A Top-Down Approach"};
-		String[] prices = {"39.95", "68.47", "39.95", "63.65", "164.65"};
-		for(int i=0; i<5; i++) {
-			Item item = new Item();
-			item.setName(names[i]);
-			item.setPrice(prices[i]);
-			items.add(item);			
-		}
+		List<Item> items = entityManager.createQuery(MY_QUERY, Item.class).getResultList();
 		inventory.setItems(items);
 		return inventory;
 	}
