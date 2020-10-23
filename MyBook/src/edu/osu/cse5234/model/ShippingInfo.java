@@ -1,13 +1,51 @@
 package edu.osu.cse5234.model;
 
+import javax.persistence.*;
+
 public class ShippingInfo {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private int id;
+	
+	@Column(name = "EMAIL")
 	private String name;
+	
+	@Column(name = "ADDRESS1")
 	private String addressLine1;
+	
+	@Column(name = "ADDRESS2")
 	private String addressLine2;
+	
+	@Column(name = "CITY")
 	private String city;
+	
+	@Column(name = "STATE")
 	private String state;
+	
+	@Column(name = "POSTAL_CODE")
 	private String zip;
 	
+	@Column(name = "COUNTRY")
+	private String country;
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 	public String getName() {
 		return name;
 	}

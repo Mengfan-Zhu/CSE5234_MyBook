@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 
 import edu.osu.cse5234.business.view.InventoryService;
 import edu.osu.cse5234.business.view.Item;
+import edu.osu.cse5234.model.LineItem;
 import edu.osu.cse5234.model.Order;
 import edu.osu.cse5234.util.ServiceLocator;
 
@@ -27,9 +28,9 @@ public class OrderProcessingServiceBean {
     
     public String processOrder(Order order) {
     	InventoryService inventoryService = ServiceLocator.getInventoryService();
-    	List<Item> items = order.getItems();
-    	if(inventoryService.validateQuantity(items)) {
-    		if(!inventoryService.updateInventory(items)) {
+    	List<LineItem> lineItems = order.getLineItems();
+    	if(inventoryService.validateQuantity(lineItems)) {
+    		if(!inventoryService.updateInventory(lineItems)) {
     			return "Error";
     		}
     	} else {

@@ -25,8 +25,9 @@ public class PurchaseController {
 		if(request.getSession().getAttribute("resubmit") == null) {
 			request.getSession().setAttribute("resubmit", false);
 		}
+		request.setAttribute("inventory", inventory);
 		Order order = new Order();
-		order.setItems(inventory.getItems());
+		order.setLineItems(inventory.getItems());
 		request.setAttribute("order", order);
 		return "OrderEntryForm";
 	}
