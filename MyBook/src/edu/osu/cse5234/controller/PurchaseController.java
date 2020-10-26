@@ -1,10 +1,14 @@
 package edu.osu.cse5234.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.osu.cse5234.business.view.Inventory;
 import edu.osu.cse5234.business.view.InventoryService;
+import edu.osu.cse5234.business.view.Item;
 import edu.osu.cse5234.bussiness.OrderProcessingServiceBean;
 import edu.osu.cse5234.model.*;
 import edu.osu.cse5234.util.ServiceLocator;
@@ -19,15 +23,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class PurchaseController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String viewOrderEntryForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// ... instantiate and set order object with items to display
+		// get inventory
 		InventoryService inventoryService = ServiceLocator.getInventoryService();
 		Inventory inventory = inventoryService.getAvailableInventory();
+		request.setAttribute("inventory", inventory);
+		// check whether to prompt resubmit
 		if(request.getSession().getAttribute("resubmit") == null) {
 			request.getSession().setAttribute("resubmit", false);
 		}
-		request.setAttribute("inventory", inventory);
+		request.setAttribute("inventory", inventory);		
+		// set order object
 		Order order = new Order();
-		order.setLineItems(inventory.getItems());
+		List<LineItem> lineItems = new ArrayList<LineItem>();
+		List<Item> items = inventory.getItems();
+		for (int i = 0; i < items.size(); i++) {
+			lineItems.add(new LineItem());
+		}
+		order.setLineItems(lineItems);
 		request.setAttribute("order", order);
 		return "OrderEntryForm";
 	}
@@ -55,18 +67,23 @@ public class PurchaseController {
 	@RequestMapping(path = "/submitPayment", method = RequestMethod.POST)
 	public String submitPayment(@ModelAttribute("payment") PaymentInfo paymentInfo, HttpServletRequest request) {
 		request.getSession().setAttribute("payment", paymentInfo);
+		Order order = (Order) request.getSession().getAttribute("order");
+		order.setPaymentInfo(paymentInfo);
 		return "redirect:/purchase/shippingEntry";
 	}
 	
 	@RequestMapping(path = "/shippingEntry", method = RequestMethod.GET)
 	public String viewShippingEntryForm(HttpServletRequest request, HttpServletResponse response) {
 		request.setAttribute("shipping", new ShippingInfo());	
+
 		return "ShippingEntryForm";
 	}
 	
 	@RequestMapping(path = "/submitShipping", method = RequestMethod.POST)
 	public String submitShipping(@ModelAttribute("shipping") ShippingInfo shippingInfo, HttpServletRequest request) {
 		request.getSession().setAttribute("shipping", shippingInfo);
+		Order order = (Order) request.getSession().getAttribute("order");
+		order.setShippingInfo(shippingInfo);
 		return "redirect:/purchase/viewOrder";
 	}
 	
@@ -79,7 +96,6 @@ public class PurchaseController {
 	public String confirmOrder(PaymentInfo paymentInfo, HttpServletRequest request) {
 		OrderProcessingServiceBean orderProcessingServiceBean = ServiceLocator.getOrderProcessingService();
 		Order order = (Order) request.getSession().getAttribute("order");
-		
 		String confirmNum = orderProcessingServiceBean.processOrder(order);
 		request.getSession().setAttribute("confirmNum", confirmNum);
 		

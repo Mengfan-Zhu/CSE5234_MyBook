@@ -9,10 +9,10 @@
    		<th>Price</th>
    		<th>Quantity</th>
    	</tr>
-			<c:forEach items="${sessionScope.order.items}" var="item" varStatus="loop">
-				<c:if test="${item.quantity.length()>0}">
+			<c:forEach items="${sessionScope.order.lineItems}" var="item" varStatus="loop">
+				<c:if test="${item.quantity>0}">
 				<tr>
-				<td><c:out value="${item.name}"></c:out></td>
+				<td><c:out value="${item.itemName}"></c:out></td>
 				<td><c:out value="${item.price}"></c:out></td>
 				<td><c:out value="${item.quantity}"></c:out></td>
 				</tr>

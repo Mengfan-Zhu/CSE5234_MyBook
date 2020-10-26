@@ -1,5 +1,6 @@
 package edu.osu.cse5234.bussiness;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,8 +30,9 @@ public class OrderProcessingServiceBean {
     public String processOrder(Order order) {
     	InventoryService inventoryService = ServiceLocator.getInventoryService();
     	List<LineItem> lineItems = order.getLineItems();
-    	if(inventoryService.validateQuantity(lineItems)) {
-    		if(!inventoryService.updateInventory(lineItems)) {
+    	List<Item> items = new ArrayList<Item>();
+    	if(inventoryService.validateQuantity(items)) {
+    		if(!inventoryService.updateInventory(items)) {
     			return "Error";
     		}
     	} else {
@@ -42,6 +44,8 @@ public class OrderProcessingServiceBean {
     
     public boolean validateItemAvailability(Order order) {
     	InventoryService inventoryService = ServiceLocator.getInventoryService();
-    	return inventoryService.validateQuantity(order.getItems());
+    	List<Item> items = new ArrayList<Item>();
+
+    	return inventoryService.validateQuantity(items);
     }
 }

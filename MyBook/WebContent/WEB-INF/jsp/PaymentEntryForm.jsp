@@ -28,7 +28,7 @@
 <script>
 function validateForm()
 {
-	var creditCardNumber=document.forms["payment"]["creditCardNumber"].value;
+	/* var creditCardNumber=document.forms["payment"]["creditCardNumber"].value;
 	var expirationDate=document.forms["payment"]["expirationDate"].value;
 	var cvvCode=document.forms["payment"]["cvvCode"].value;
   	var cardHolderName=document.forms["payment"]["cardHolderName"].value;
@@ -57,7 +57,7 @@ function validateForm()
   	if(invalid){
   		alert(message);
 	    return false;
-  	}
+  	} */
 }
 </script>
 <jsp:include page="footer.jsp"/>

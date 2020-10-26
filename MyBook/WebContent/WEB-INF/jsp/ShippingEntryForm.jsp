@@ -33,7 +33,7 @@
 <script>
 function validateForm()
 {
-	var name=document.forms["shipping"]["name"].value;
+	/* var name=document.forms["shipping"]["name"].value;
 	var addressLine1=document.forms["shipping"]["addressLine1"].value;
   	var city=document.forms["shipping"]["city"].value;
   	var state=document.forms["shipping"]["state"].value;
@@ -68,7 +68,7 @@ function validateForm()
   	if(invalid){
   		alert(message);
 	    return false;
-  	}
+  	} */
 }
 </script>
 <jsp:include page="footer.jsp"/>
