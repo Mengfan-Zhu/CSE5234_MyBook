@@ -28,7 +28,7 @@ public class Item implements Serializable{
 	@Column(name="UNIT_PRICE")
 	private String price;
 	@Column(name="AVAILABLE_QUANTITY")
-	private String quantity;
+	private int quantity;
 
 	public String getName() {
 		return name;
@@ -46,11 +46,11 @@ public class Item implements Serializable{
 		this.price = price;
 	}
 	
-	public String getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 	
-	public void setQuantity(String quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 	public int getId() {
