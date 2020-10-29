@@ -2,6 +2,8 @@ package edu.osu.cse5234.model;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "PAYMENT_INFO")
 public class PaymentInfo {
 	
 	@Id

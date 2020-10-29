@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "CUSTOMER_ORDER")
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,7 +14,7 @@ public class Order {
 	private int id;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "CUSTOMER_ID_FX")
+	@JoinColumn(name = "CUSTOMER_ORDER_ID_FK")
 	private List<LineItem> lineItems;
 	
 	@Column(name = "CUSTOMER_NAME")
