@@ -66,7 +66,6 @@ public class PurchaseController {
 	
 	@RequestMapping(path = "/submitPayment", method = RequestMethod.POST)
 	public String submitPayment(@ModelAttribute("payment") PaymentInfo paymentInfo, HttpServletRequest request) {
-		request.getSession().setAttribute("payment", paymentInfo);
 		Order order = (Order) request.getSession().getAttribute("order");
 		order.setPaymentInfo(paymentInfo);
 		return "redirect:/purchase/shippingEntry";
@@ -75,13 +74,11 @@ public class PurchaseController {
 	@RequestMapping(path = "/shippingEntry", method = RequestMethod.GET)
 	public String viewShippingEntryForm(HttpServletRequest request, HttpServletResponse response) {
 		request.setAttribute("shipping", new ShippingInfo());	
-
 		return "ShippingEntryForm";
 	}
 	
 	@RequestMapping(path = "/submitShipping", method = RequestMethod.POST)
 	public String submitShipping(@ModelAttribute("shipping") ShippingInfo shippingInfo, HttpServletRequest request) {
-		request.getSession().setAttribute("shipping", shippingInfo);
 		Order order = (Order) request.getSession().getAttribute("order");
 		order.setShippingInfo(shippingInfo);
 		return "redirect:/purchase/viewOrder";
@@ -97,14 +94,16 @@ public class PurchaseController {
 		OrderProcessingServiceBean orderProcessingServiceBean = ServiceLocator.getOrderProcessingService();
 		Order order = (Order) request.getSession().getAttribute("order");
 		String confirmNum = orderProcessingServiceBean.processOrder(order);
-		request.getSession().setAttribute("confirmNum", confirmNum);
-		
+		if(confirmNum == "Error") {
+			request.getSession().setAttribute("resubmit", true);
+			return "redirect:/purchase";
+		}
+		request.getSession().setAttribute("confirmNum", confirmNum);		
 		return "redirect:/purchase/viewConfirmation";
 	}
 	
 	@RequestMapping(path = "/viewConfirmation", method = RequestMethod.GET)
-	public String viewConfirmation(HttpServletRequest request, HttpServletResponse response) {
-		
+	public String viewConfirmation(HttpServletRequest request, HttpServletResponse response) {		
 		return "Confirmation";
 	}
 }

@@ -1,4 +1,4 @@
-<footer class = "bg-info">
+<footer class = "bg-info fixed-bottom">
 <p>
 &copy; All right reserved 2020
 </p>

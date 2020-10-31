@@ -11,7 +11,7 @@ public class ShippingInfo {
 	@Column(name = "ID")
 	private int id;
 	
-	@Column(name = "EMAIL")
+	@Column(name = "NAME")
 	private String name;
 	
 	@Column(name = "ADDRESS1")
@@ -29,8 +29,6 @@ public class ShippingInfo {
 	@Column(name = "POSTAL_CODE")
 	private String zip;
 	
-	@Column(name = "COUNTRY")
-	private String country;
 	
 	public int getId() {
 		return id;
@@ -40,13 +38,6 @@ public class ShippingInfo {
 		this.id = id;
 	}
 
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
 
 	public String getName() {
 		return name;

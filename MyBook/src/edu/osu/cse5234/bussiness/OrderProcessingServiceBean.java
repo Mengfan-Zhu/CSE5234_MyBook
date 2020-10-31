@@ -22,7 +22,7 @@ import edu.osu.cse5234.util.ServiceLocator;
 public class OrderProcessingServiceBean {
 	
 	@PersistenceContext
-	EntityManager entityManager;
+	private EntityManager entityManager;
 	
     /**
      * Default constructor. 
@@ -32,12 +32,9 @@ public class OrderProcessingServiceBean {
     }
     
     public String processOrder(Order order) {
-    	//InventoryService inventoryService = ServiceLocator.getInventoryService();
-    	
     	if(!validateItemAvailability(order)) {
     		return "Error";
-    	}
-    	
+    	}    	
     	entityManager.persist(order);
     	entityManager.flush();
     	

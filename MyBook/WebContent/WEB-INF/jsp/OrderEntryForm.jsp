@@ -39,16 +39,29 @@
 <script>
 function validateForm()
 {
-	/* var list = document.getElementsByTagName("input");
+	var list = document.getElementsByTagName("input");
+	var customerName=document.forms["order"]["customerName"].value;
+	var emailAddress=document.forms["order"]["emailAddress"].value;
 	var nonzero = false;
+	var message = "";
+  	var invalid = false;
+	if (!/^[A-Za-z][A-Za-z ]{4,34}$/.test(customerName))
+  	{
+  		message += "Please input valid name\n";
+	    invalid = true;
+  	}
+	if (!/^[A-Za-z0-9][A-Za-z0-9_\-\.]*\@[A-Za-z0-9_\-\.]+\.[A-Za-z]{2,4}$/.test(emailAddress))
+  	{
+  		message += "Please input valid email address\n";
+	    invalid = true;
+  	}
 	for(var i=2;i<list.length;i++)
     {
            if(list[i].type=="text")  
            {
            	var quantity = list[i].value;
                if(quantity.length!=0 && !/^((0)|([1-9][0-9]{0,2}))$/.test(quantity)){
-             		alert("Please input valid quantity");
-           	    	return false;
+             		message += "Please input valid quantity\n";
                }else{
 	               	if(/^[1-9][0-9]{0,2}$/.test(quantity)){
 	               		nonzero = true;
@@ -57,9 +70,12 @@ function validateForm()
            }
     } 
 	if(!nonzero){
-		alert("You don't order any book!");
+		message += "You don't order any book!\n";
+	} 
+	if(invalid){
+  		alert(message);
 	    return false;
-	} */
+  	}
 }
 </script>
 <jsp:include page="footer.jsp"/>
