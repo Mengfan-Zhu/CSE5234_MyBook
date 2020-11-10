@@ -1,10 +1,14 @@
 package edu.osu.cse5234.bussiness;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.jms.*;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.persistence.*;
@@ -24,11 +28,22 @@ import edu.osu.cse5234.util.ServiceLocator;
  */
 @Stateless
 @LocalBean
+@Resource(name="jms/emailQCF", lookup="jms/emailQCF", type=ConnectionFactory.class) 
 public class OrderProcessingServiceBean {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 	private static String SHIPPING_URI = "http://localhost:9080/UPS/services/shipping";
+	/**
+	 * for message
+	 */
+	@Inject
+	@JMSConnectionFactory("java:comp/env/jms/emailQCF")
+	private JMSContext jmsContext;
+
+	@Resource(lookup="jms/emailQ")
+	private Queue queue;
+
     /**
      * Default constructor. 
      */
@@ -63,6 +78,8 @@ public class OrderProcessingServiceBean {
 		     responseJson.getInt("ShippingReferenceNumber"));
 
 		client.close();
+		// message
+		notifyUser(order.getEmailAddress());
 
     	return UUID.randomUUID().toString();
     }
@@ -87,4 +104,16 @@ public class OrderProcessingServiceBean {
     	}
     	return true;
     }
+    private void notifyUser(String customerEmail) {
+
+    	String message = customerEmail + ":" +
+    	       "Your order was successfully submitted. " + 
+    	     	"You will hear from us when items are shipped. " + 
+    	      	new Date();
+
+    	System.out.println("Sending message: " + message);
+    	jmsContext.createProducer().send(queue, message);
+    	System.out.println("Message Sent!");
+    	}
+
 }
